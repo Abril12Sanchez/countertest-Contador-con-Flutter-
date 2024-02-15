@@ -1,6 +1,7 @@
-# countertest
+# Contador con Flutter
 
-A new Flutter project.
+Este proyecto es un contador con flutter, en donde se puede incrementar, decrementar y reiniciar el contador. 
+![image](https://github.com/Abril12Sanchez/countertest-Contador-con-Flutter-/assets/137373616/3025f19e-9123-4398-b122-1bbf279c5b66)
 
 ## Getting Started
 
