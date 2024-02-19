@@ -1,4 +1,5 @@
-import 'package:countertest/pages/home_page.dart';
+//import 'package:countertest/pages/home_page.dart';
+import 'package:countertest/pages/login_page.dart';
 import 'package:flutter/material.dart';
 //mateapp
 void main() => runApp(const MyApp());
@@ -10,7 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Contador',
-      home: HomePage(),
+      home:LoginPage(),
+     // home: HomePage(),
     );
   }
 }

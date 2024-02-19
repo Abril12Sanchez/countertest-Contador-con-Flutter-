@@ -54,11 +54,9 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       setState(() {
                         cont--;
-                        // error de negativos
                         if (cont < 0) {
                           cont = 0;
                         }
-                        // resuelve el error
                       });
                     },
                     style: ElevatedButton.styleFrom(primary: Colors.pink),
