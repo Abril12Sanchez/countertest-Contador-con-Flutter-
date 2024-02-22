@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false, //para el debug
       title: 'Contador',
       home:LoginPage(),
      // home: HomePage(),

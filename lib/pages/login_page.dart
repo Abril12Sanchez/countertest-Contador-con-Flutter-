@@ -31,7 +31,7 @@ class Fondo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container( //min propiedad may widget, los wid aceptan propiedades
-      decoration: BoxDecoration(gradient: LinearGradient(
+      decoration: const BoxDecoration(gradient: LinearGradient(
         colors: [
           Color.fromARGB(255, 125, 190, 243),
           Colors.blue,
@@ -70,15 +70,23 @@ class _ContenidoState extends State<Contenido> {
           
           SizedBox(height: 5,),
 
-          Text( 'Bienvenido a tu cuenta',
+          Text( 'Welcome to your count',
           style: TextStyle(
             color: Colors.white,
             fontSize: 15,
             letterSpacing: 1.5,
           ),
           ),
+          SizedBox(height:15),
 
           Datos(),
+          
+
+          SizedBox(height: 20,),
+
+        Politica(),
+
+
 
         ],
       ),
@@ -94,10 +102,17 @@ class Datos extends StatefulWidget {
 }
 
 class _DatosState extends State<Datos> {
+  bool showPass=true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
+       decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+        ),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -128,21 +143,168 @@ class _DatosState extends State<Datos> {
           ),
           const SizedBox(height: 5,),
           TextFormField(
-            obscureText: true,
+            obscureText: showPass,
             decoration:  InputDecoration(
               border: const OutlineInputBorder(),
-              hintText: 'password',
+              hintText: 'Password',
               suffixIcon: IconButton(
                 icon:  const Icon( Icons.remove_red_eye_outlined),
-              onPressed: () => {},
+              onPressed: () => {
+                setState((){
+                  showPass == true ? showPass=false: showPass=true;
+                })
+
+              },
               )
           ),
           ),
-          const SizedBox(height: 5,),
-
-
+          
+         const  Remember(),
+         const SizedBox(height: 30,),
+         const Botones(),
         ],
+        
       ),
+     
     );
+  }
+}
+
+
+
+// si va a tener funcionamiento  statefulW
+
+class Remember extends StatefulWidget {
+  const Remember({super.key});
+
+  @override
+  State<Remember> createState() => _RememberState();
+}
+
+class _RememberState extends State<Remember> {
+  bool checked=false;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Checkbox(value: checked,
+        onChanged: (value) => {
+          setState((){
+          checked==false?checked=true: checked=false; 
+          }),
+
+        },
+
+        ),
+        
+       const Text ('Remember me'),
+       const Spacer(),
+        TextButton(
+          onPressed: ()=>{},
+          child: const Text('Forgot Password?', style: TextStyle(fontSize: 12),),
+        ),
+
+
+      ],
+    );
+
+  }
+}
+
+// class Botones extends StatefulWidget {
+//   const Botones({super.key});
+
+//   @override
+//   State<Botones> createState() => _BotonesState();
+// }
+
+// class _BotonesState extends State<Botones> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+
+
+class Botones extends StatelessWidget {
+  const Botones({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: ElevatedButton(
+            onPressed: () => {},
+            style: ButtonStyle(
+              backgroundColor:  MaterialStateProperty.all<Color>(const Color(0xff142047)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))
+            ),
+            child: const Text('Login', 
+            style: TextStyle(color: Colors.white
+            ),
+            ),
+            ),
+          ),
+          const SizedBox(height: 25,
+          width: double.infinity,),
+        const Text('or sign with',
+        style: TextStyle(color: Colors.grey,),
+        ),
+        const SizedBox(height: 25,
+          width: double.infinity,),
+        SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: OutlinedButton(
+            onPressed: () => {},
+            child: const Text('Google', style: TextStyle(color: Color(0xff142047), 
+            fontWeight: FontWeight.bold,
+            fontSize: 18,),),
+          ),
+        ),
+         const SizedBox(height: 15,
+          width: double.infinity,),
+
+         SizedBox(
+          width: double.infinity,
+          height: 50,
+          child: OutlinedButton(
+            onPressed: () => {},
+            child: const Text('Facebook', style: TextStyle(color: Color(0xff142047), 
+            fontWeight: FontWeight.bold,
+            fontSize: 18,),),
+          ),
+        ),
+
+         const SizedBox(height: 15,
+          width: double.infinity,),
+
+      ],
+    );
+  }
+}
+
+class Politica extends StatelessWidget {
+  const Politica({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+       const Text ('Read user'),
+      //  const Spacer(),
+        TextButton(
+          onPressed: ()=>{},
+          child: const Text('Privacy Policy', style: TextStyle(fontSize: 15, color: Colors.white),),
+          
+        ),
+      
+      ],
+    );
+    
   }
 }
