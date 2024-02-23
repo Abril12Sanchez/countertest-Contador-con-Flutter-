@@ -174,42 +174,95 @@ class _DatosState extends State<Datos> {
 
 // si va a tener funcionamiento  statefulW
 
+
 class Remember extends StatefulWidget {
-  const Remember({super.key});
+  const Remember({Key? key}) : super(key: key);
 
   @override
   State<Remember> createState() => _RememberState();
 }
 
 class _RememberState extends State<Remember> {
-  bool checked=false;
+  bool checked = false;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Checkbox(value: checked,
-        onChanged: (value) => {
-          setState((){
-          checked==false?checked=true: checked=false; 
-          }),
-
-        },
-
+        Checkbox(
+          value: checked,
+          onChanged: (value) {
+            setState(() {
+              checked = value ?? false;
+            });
+          },
         ),
-        
-       const Text ('Remember me'),
-       const Spacer(),
+        const Text('Remember me'),
+        const Spacer(),
         TextButton(
-          onPressed: ()=>{},
-          child: const Text('Forgot Password?', style: TextStyle(fontSize: 12),),
+          onPressed: () {
+            // Navegar a la página de "forgot password"
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ForgotPasswordPage(),
+              ),
+            );
+          },
+          child: const Text(
+            'Forgot Password?',
+            style: TextStyle(fontSize: 12),
+          ),
         ),
-
-
       ],
     );
-
   }
 }
+
+// Nueva página para "forgot password"
+class ForgotPasswordPage extends StatelessWidget {
+  const ForgotPasswordPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Forgot Password'),
+      ),
+      body: Center(
+        child: Column( // Utilizamos un Column para tener múltiples hijos
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+           const Text(
+              'Pagina para recuperar contraseña',
+              style: TextStyle(fontSize: 16), // Ajusta el tamaño del texto según tus necesidades
+            ),
+            const SizedBox(height: 20), // Espacio entre los elementos
+            ElevatedButton(
+              onPressed: () {
+                // Navegar hacia atrás cuando se presiona el botón de "Volver"
+                Navigator.of(context).pop();
+              },
+              child: const Text('Regresar'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: const Text('Remember Checkbox'),
+      ),
+      body: const Remember(),
+    ),
+  ));
+}
+
 
 // class Botones extends StatefulWidget {
 //   const Botones({super.key});
